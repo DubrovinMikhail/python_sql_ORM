@@ -28,8 +28,24 @@ def init_db(session):
             session.add(model(id=record.get('pk'), **record.get('fields')))
         session.commit()
 
+def serch_shop(publisher):
+    q = session.query(Publisher).join(Book).filter(Publisher.name == publisher)
+    list_id_book = []
+    for pub in q.all():
+        for book in pub.books:
+            list_id_book.append(book.id)
+    print(list_id_book)
+    qq = session.query(Shop).join(Stock)
+    shop_name = set()
+    for shop in qq.all():
+        for stock in shop.stocks:
+            if stock.id_book in list_id_book:
+                print(shop.name)
+                shop_name.add(shop.name)
+    print(shop_name)
 
-def serch_publisher(name_id=None):
+
+def serch_publisher(name_id):
     for publisher in session.query(Publisher).all():
         if publisher.name == name_id:
             return print(publisher)
@@ -41,5 +57,8 @@ def serch_publisher(name_id=None):
 
 if __name__ == "__main__":
     init_db(session)
+    publisher = input("Ведите имя издателя для поиска магазина: ")
+    serch_shop(publisher)
     name_id = input("Ведите имя или id издателя: ")
     serch_publisher(name_id)
+
