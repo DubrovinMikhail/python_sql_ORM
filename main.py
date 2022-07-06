@@ -29,13 +29,9 @@ def init_db(session):
         session.commit()
 
 def serch_shop(publisher):
-    results = session.query(Publisher, Book, Stock, Shop).\
-        select_from(Publisher).join(Book).join(Stock).join(Shop).\
-        filter(Publisher.name == publisher)
-    shop_name = set()
-    for publisher, book, stock, shop in results:
-        shop_name.add(shop.name)
-    return shop_name
+    results = session.query(Shop).join(Stock).join(Book).join(Publisher).filter(Publisher.name == publisher).all()
+    for s in results:
+        print(f'Shop: {s.id}, {s.name}')
 
 
 def serch_publisher(name_id):
@@ -51,7 +47,7 @@ def serch_publisher(name_id):
 if __name__ == "__main__":
     init_db(session)
     publisher = input("Ведите имя издателя для поиска магазина: ")
-    print(*serch_shop(publisher))
-    name_id = input("Ведите имя или id издателя: ")
-    print(serch_publisher(name_id))
+    serch_shop(publisher)
+    # name_id = input("Ведите имя или id издателя: ")
+    # print(serch_publisher(name_id))
 
