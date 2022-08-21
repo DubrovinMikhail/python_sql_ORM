@@ -22,6 +22,4 @@
 
 Заполните БД тестовыми данными.
 
-Тестовые данные берутся из файла [tests_data.json](https://github.com/DubrovinMikhail/python_sql_ORM/blob/main/tests_data.json)]. Пример содержания в JSON файле.
-
-В
+Тестовые данные берутся из файла [tests_data.json](https://github.com/DubrovinMikhail/python_sql_ORM/blob/main/tests_data.json). Пример содержания в JSON файле.
