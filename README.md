@@ -4,7 +4,7 @@
 
 Составить модели классов SQLAlchemy по схеме:
 
-![](readme/book_publishers_scheme.png)
+![](book_publishers_scheme.png)
 
 Интуитивно необходимо выбрать подходящие типы и связи полей.
 
